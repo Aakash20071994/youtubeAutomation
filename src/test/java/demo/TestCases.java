@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.logging.Level;
 
 import org.apache.commons.collections4.functors.TruePredicate;
+import org.apache.xmlbeans.impl.xb.xsdschema.ListDocument.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -22,6 +23,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import java.util.ArrayList;
+
 
 import demo.utils.ExcelDataProvider;
 import demo.wrappers.Wrappers;
@@ -102,7 +105,7 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
 
         }
           
-        @Test(enabled=true)
+        @Test
         public void testCase03() throws InterruptedException {
                 System.out.println("Running Test Case 03");
                 Wrappers.findElementAndClick(driver, By.xpath("//a[@title='Music']"));
@@ -120,7 +123,7 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
                 sa.assertTrue(Wrappers.convertToNumericValue(res.split(" ")[0]) <= 50);
 
         }
-       @Test
+        @Test
         public void testCase04() throws InterruptedException {
                 System.out.println("Running Test Case 04");   
                 Wrappers.findElementAndClick(driver, By.xpath("//a[@title='News']"));
@@ -152,17 +155,20 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
                 Thread.sleep((new java.util.Random().nextInt(3) + 2) * 1000);
                 long tally=0;
                 int iter=1;
-                while(tally<1000000000 || iter>5){
+                while(tally<1000000000 && iter>5){
                         String res=Wrappers.findElementAndPrint(driver, By.xpath("//div[@class='style-scope ytd-video-meta-block']//span[contains(text(),'view')]"), iter);
                         res=res.split(" ")[0];
                         tally+=Wrappers.convertToNumericValue(res);
-                        Thread.sleep((new java.util.Random().nextInt(3) + 2) * 1000);
+                        //Thread.sleep((new java.util.Random().nextInt(3) + 2) * 1000);
+                        Thread.sleep(4000);
                 }
                 Thread.sleep((new java.util.Random().nextInt(3) + 2) * 1000);
                 System.out.println("Ending of test case 05");
 
 
         }
+
+       
 
   
 
